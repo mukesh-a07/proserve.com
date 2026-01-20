@@ -1,1087 +1,861 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigiSharkz - Professional Business Services</title>
-    <style>
-        :root {
-            --primary-color: #0066cc;
-            --primary-hover: #0052a3;
-            --primary-active: #003d7a;
-            --secondary-color: #f0f4f8;
-            --text-primary: #1a202c;
-            --text-secondary: #4a5568;
-            --border-color: #e2e8f0;
-            --success-color: #48bb78;
-            --error-color: #f56565;
-            --spacing-xs: 4px;
-            --spacing-sm: 8px;
-            --spacing-md: 16px;
-            --spacing-lg: 24px;
-            --spacing-xl: 32px;
-            --spacing-2xl: 48px;
-            --border-radius: 8px;
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: #ffffff;
-        }
-
-        /* ========== HEADER & NAVIGATION ========== */
-        header {
-            position: sticky;
-            top: 0;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-md) var(--spacing-lg);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: var(--spacing-lg);
-            align-items: center;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 14px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-menu a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .cta-btn {
-            background-color: var(--primary-color);
-            color: white;
-            padding: var(--spacing-sm) var(--spacing-lg);
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .cta-btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-primary);
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-
-        /* ========== HERO SECTION ========== */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(28px, 6vw, 56px);
-            margin-bottom: var(--spacing-lg);
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: clamp(16px, 2vw, 20px);
-            margin-bottom: var(--spacing-xl);
-            opacity: 0.95;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: var(--spacing-lg);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 12px 32px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            border: 2px solid;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .btn-primary {
-            background-color: white;
-            color: #667eea;
-            border-color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border-color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-        }
-
-        /* ========== SERVICES SECTION ========== */
-        .services {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: var(--spacing-2xl);
-        }
-
-        .section-title h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-        }
-
-        .section-title p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
-        }
-
-        .service-card {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-xl);
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-8px);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto var(--spacing-lg);
-            font-size: 28px;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-lg);
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .learn-more {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: var(--transition);
-        }
-
-        .learn-more:hover {
-            gap: 8px;
-        }
-
-        /* ========== ABOUT SECTION ========== */
-        .about {
-            background: linear-gradient(to bottom, #f8f9fa, white);
-            padding: var(--spacing-2xl) var(--spacing-lg);
-        }
-
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-2xl);
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            margin-bottom: var(--spacing-lg);
-            color: var(--text-primary);
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-lg);
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl);
-        }
-
-        .feature {
-            display: flex;
-            gap: var(--spacing-md);
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background-color: #e0e7ff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            flex-shrink: 0;
-        }
-
-        .feature-text h4 {
-            font-size: 14px;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-
-        .feature-text p {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: var(--border-radius);
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image::after {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(10px, -10px); }
-        }
-
-        /* ========== CONTACT SECTION ========== */
-        .contact {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-2xl);
-        }
-
-        .contact-form {
-            background: white;
-            padding: var(--spacing-xl);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-        }
-
-        .form-group {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-primary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: var(--spacing-md);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            font-family: inherit;
-            font-size: 14px;
-            transition: var(--transition);
-            background-color: #fafbfc;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background-color: white;
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .submit-btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .form-message {
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius);
-            margin-top: var(--spacing-md);
-            display: none;
-            font-size: 14px;
-        }
-
-        .form-message.success {
-            display: block;
-            background-color: #f0fdf4;
-            color: #15803d;
-            border: 1px solid #86efac;
-        }
-
-        .form-message.error {
-            display: block;
-            background-color: #fef2f2;
-            color: #b91c1c;
-            border: 1px solid #fecaca;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-xl);
-        }
-
-        .contact-method {
-            background: white;
-            padding: var(--spacing-xl);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            display: flex;
-            gap: var(--spacing-lg);
-            align-items: flex-start;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .contact-method:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-method-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .contact-method-text h3 {
-            font-size: 16px;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-
-        .contact-method-text p {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        .contact-method-text a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-method-text a:hover {
-            text-decoration: underline;
-        }
-
-        .map-container {
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            height: 400px;
-        }
-
-        /* ========== FOOTER ========== */
-        footer {
-            background-color: #1a202c;
-            color: #cbd5e0;
-            padding: var(--spacing-xl) var(--spacing-lg);
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            margin-bottom: var(--spacing-lg);
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-lg);
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #cbd5e0;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 18px;
-        }
-
-        .social-links a:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        /* ========== MOBILE RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid var(--border-color);
-                gap: var(--spacing-md);
-                padding: var(--spacing-lg);
-                z-index: 999;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-menu a::after {
-                display: none;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image {
-                height: 300px;
-            }
-
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .map-container {
-                height: 300px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .section-title h2 {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar {
-                padding: var(--spacing-md);
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .hero {
-                padding: var(--spacing-xl) var(--spacing-md);
-            }
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .services-grid {
-                gap: var(--spacing-md);
-            }
-
-            .service-card {
-                padding: var(--spacing-lg);
-            }
-
-            footer {
-                padding: var(--spacing-lg) var(--spacing-md);
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- ========== HEADER ========== -->
-    <header>
-        <nav class="navbar">
-            <a href="#" class="logo">
-                <span>🦈</span> DigiSharkz
-            </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <a href="#contact" class="cta-btn">Get Started</a>
-        </nav>
-    </header>
-
-    <!-- ========== HERO SECTION ========== -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Affordable Digital Marketing Services by Digi Shark</h1>
-            <p>Transform your business with our expert consulting, design, and development services. We help companies scale and succeed.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn-primary">Start Your Project</a>
-                <a href="#services" class="btn-secondary">Explore Services</a>
-            </div>
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digi Sharkz - Digital Marketing Agency</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    * {
+      font-family: 'Outfit', sans-serif;
+    }
+    .mono {
+      font-family: 'Space Mono', monospace;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shark-swim {
+      0% { transform: translateX(-100%) translateY(0) rotate(-5deg); opacity: 0; }
+      5% { opacity: 1; }
+      50% { transform: translateX(50vw) translateY(0) rotate(0deg); }
+      95% { opacity: 1; }
+      100% { transform: translateX(calc(100% + 100px)) translateY(20px) rotate(5deg); opacity: 0; }
+    }
+    @keyframes shark-tail-wag {
+      0%, 100% { transform: scaleX(1) scaleY(1); }
+      25% { transform: scaleX(0.95) scaleY(1.05); }
+      50% { transform: scaleX(1) scaleY(1); }
+      75% { transform: scaleX(0.95) scaleY(1.05); }
+    }
+    @keyframes shark-fin-wave {
+      0%, 100% { transform: rotateZ(0deg); }
+      50% { transform: rotateZ(15deg); }
+    }
+    @keyframes bubble-rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+    }
+    @keyframes glow-pulse {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3)); }
+      50% { filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.8)); }
+    }
+    @keyframes wave-motion {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    @keyframes flip-in {
+      0% { transform: rotateX(90deg) rotateY(0deg); opacity: 0; }
+      100% { transform: rotateX(0deg) rotateY(0deg); opacity: 1; }
+    }
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+    @keyframes neon-glow {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.3), 0 0 20px rgba(0, 212, 255, 0.2);
+      }
+      20%, 24%, 55% {
+        text-shadow: 0 0 30px rgba(0, 212, 255, 0.8), 0 0 60px rgba(0, 212, 255, 0.6), 0 0 90px rgba(0, 212, 255, 0.4);
+      }
+    }
+    @keyframes slide-left {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slide-right {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes scale-pop {
+      0% { transform: scale(0) rotate(0deg); opacity: 0; }
+      50% { transform: scale(1.1) rotate(5deg); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-float-delay { animation: float 6s ease-in-out infinite 2s; }
+    .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    .animate-gradient { 
+      background-size: 200% 200%;
+      animation: gradient-shift 4s ease infinite;
+    }
+    .animate-slide-up { animation: slide-up 0.8s ease-out forwards; }
+    .animate-slide-up-delay-1 { animation: slide-up 0.8s ease-out 0.2s forwards; opacity: 0; }
+    .animate-slide-up-delay-2 { animation: slide-up 0.8s ease-out 0.4s forwards; opacity: 0; }
+    .animate-slide-up-delay-3 { animation: slide-up 0.8s ease-out 0.6s forwards; opacity: 0; }
+    .animate-shark { animation: shark-swim 8s linear infinite; }
+    .animate-shark-tail { animation: shark-tail-wag 0.8s ease-in-out infinite; }
+    .animate-shark-fin { animation: shark-fin-wave 1.2s ease-in-out infinite; }
+    .animate-bubble { animation: bubble-rise 2s ease-in forwards; }
+    .animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
+    .animate-wave { animation: wave-motion 2s ease-in-out infinite; }
+    .animate-shimmer { 
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      background-size: 1000px 100%;
+      animation: shimmer 3s infinite;
+    }
+    .animate-flip { animation: flip-in 0.8s ease-out forwards; }
+    .animate-morph { animation: morph 8s ease-in-out infinite; }
+    .animate-neon { animation: neon-glow 2s ease-in-out infinite; }
+    .animate-slide-left { animation: slide-left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .animate-slide-right { animation: slide-right 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .animate-pop { animation: scale-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #00d4ff, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .bg-gradient-main {
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a1a2a 100%);
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+    }
+    .cta-button {
+      background: linear-gradient(135deg, #00d4ff, #00ff88);
+      transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full bg-gradient-main text-white overflow-auto">
+  <div class="app-wrapper w-full h-full overflow-auto"><!-- Floating Contact Menu -->
+   <div class="fixed right-6 bottom-6 z-40 flex flex-col gap-3 items-end" id="contact-menu"><!-- Social Icons Container (Hidden by default, shown on click) -->
+    <div id="social-icons-container" class="hidden flex-col gap-2 mb-4"><a id="twitter-btn" href="https://twitter.com/digisharkz" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110 tooltip-trigger" data-tooltip="Twitter">
+      <svg class="w-6 h-6 text-cyan-400" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7a10.6 10.6 0 01-9.5 5M2 20s1 2 6 2" />
+      </svg></a> <a id="facebook-btn" href="https://facebook.com/digisharkz" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110" data-tooltip="Facebook">
+      <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M18 2h-3a6 6 0 00-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a1 1 0 011-1h3z" />
+      </svg></a> <a id="instagram-btn" href="https://instagram.com/digisharkz" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110" data-tooltip="Instagram">
+      <svg class="w-6 h-6 text-pink-400" fill="currentColor" viewbox="0 0 24 24">
+       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2" /><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" /><circle cx="17" cy="7" r="1" fill="currentColor" />
+      </svg></a> <a id="linkedin-btn" href="https://linkedin.com/company/digisharkz" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110" data-tooltip="LinkedIn">
+      <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" />
+      </svg></a>
+    </div><!-- Main Contact Buttons -->
+    <div class="flex gap-2 flex-wrap justify-end"><!-- Email Button --> <a id="email-btn" href="mailto:hello@digisharkz.com" class="w-14 h-14 rounded-full bg-gradient-to-r from-red-500 to-orange-500 flex items-center justify-center hover:scale-110 transition-all shadow-lg hover:shadow-red-500/50" data-tooltip="Email">
+      <svg class="w-6 h-6 text-white" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22 6 12 13 2 6" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round" />
+      </svg></a> <!-- WhatsApp Button --> <a id="whatsapp-btn" href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center hover:scale-110 transition-all shadow-lg hover:shadow-green-500/50" data-tooltip="WhatsApp">
+      <svg class="w-6 h-6 text-white" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.962 1.348l-.354.203-.367-.057c-1.156-.174-2.242-.596-3.108-1.25l-.207-.16-.232.12C2.39 5.899 1.838 7.625 1.838 9.48c0 5.12 4.172 9.28 9.28 9.28 2.304 0 4.468-.848 6.144-2.386l.207-.186.23.023c1.156.174 2.242.596 3.108 1.25l.207.161.231-.12c1.282-1.017 1.834-2.743 1.834-4.596 0-5.12-4.172-9.28-9.28-9.28" />
+      </svg></a> <!-- Call Button --> <a id="call-btn" href="tel:+1234567890" class="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center hover:scale-110 transition-all shadow-lg hover:shadow-blue-500/50" data-tooltip="Call">
+      <svg class="w-6 h-6 text-white" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+      </svg></a> <!-- Social Menu Toggle Button --> <button id="social-toggle-btn" class="w-14 h-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center hover:scale-110 transition-all shadow-lg hover:shadow-purple-500/50 animate-pulse-glow">
+      <svg class="w-6 h-6 text-white transition-transform" id="social-icon" fill="currentColor" viewbox="0 0 24 24">
+       <circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" />
+      </svg></button>
+    </div>
+   </div><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 glass">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="animate-shark relative w-12 h-12" style="perspective: 1000px;">
+       <svg width="48" height="48" viewbox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg"><!-- Body with gradient --> <defs>
+         <lineargradient id="sharkBody" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0088bb;stop-opacity:1" />
+         </lineargradient>
+         <filter id="sharkGlow">
+          <fegaussianblur stddeviation="2" result="coloredBlur" />
+          <femerge>
+           <femergenode in="coloredBlur" />
+           <femergenode in="SourceGraphic" />
+          </femerge>
+         </filter>
+        </defs> <!-- Main body --> <ellipse cx="50" cy="30" rx="35" ry="18" fill="url(#sharkBody)" filter="url(#sharkGlow)" /> <!-- Head (sharper) --> <path d="M 85 30 Q 95 25 100 30 Q 95 35 85 30 Z" fill="url(#sharkBody)" filter="url(#sharkGlow)" /> <!-- Upper fin (animated) --> <path d="M 50 15 L 48 5 L 52 15 Z" fill="#00ff88" class="animate-shark-fin" style="transform-origin: 50px 15px;" filter="url(#sharkGlow)" /> <!-- Tail (animated) --> <g class="animate-shark-tail" style="transform-origin: 15px 30px;">
+         <path d="M 15 30 L 5 20 L 8 30 L 5 40 Z" fill="#00d4ff" filter="url(#sharkGlow)" />
+        </g> <!-- Eye --> <circle cx="80" cy="25" r="3" fill="#000" /> <circle cx="81" cy="24" r="1.5" fill="#fff" /> <!-- Gill lines --> <line x1="60" y1="35" x2="60" y2="45" stroke="#0088bb" stroke-width="1" opacity="0.6" /> <line x1="50" y1="36" x2="50" y2="46" stroke="#0088bb" stroke-width="1" opacity="0.6" /> <line x1="40" y1="36" x2="40" y2="46" stroke="#0088bb" stroke-width="1" opacity="0.6" /> <!-- Mouth line --> <path d="M 85 30 Q 90 32 92 31" stroke="#00ff88" stroke-width="1" fill="none" opacity="0.8" />
+       </svg>
+      </div><span class="text-2xl font-bold animate-neon">DIGI<span class="text-gradient">SHARKZ</span></span>
+     </div>
+     <div class="hidden md:flex items-center gap-8"><a href="#services" class="hover:text-cyan-400 transition-colors">Services</a> <a href="#results" class="hover:text-cyan-400 transition-colors">Results</a> <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a> <button class="cta-button px-6 py-2 rounded-full text-gray-900 font-semibold">Get Quote</button>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"><!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+     <div class="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-float"></div>
+     <div class="absolute bottom-20 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-float-delay"></div>
+     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/5 to-emerald-500/5 rounded-full blur-3xl"></div><!-- Animated Sharks in Background -->
+     <div class="absolute top-1/4 left-0 w-full h-16 opacity-30">
+      <svg width="100%" height="100%" viewbox="0 0 1000 100" preserveaspectratio="none" class="animate-shark"><defs>
+        <lineargradient id="shark1" x1="0%" y1="0%" x2="0%" y2="100%">
+         <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6" />
+         <stop offset="100%" style="stop-color:#0088bb;stop-opacity:0.3" />
+        </lineargradient>
+       </defs> <ellipse cx="100" cy="50" rx="60" ry="20" fill="url(#shark1)" /> <path d="M 160 50 Q 175 45 185 50 Q 175 55 160 50 Z" fill="url(#shark1)" /> <path d="M 40 50 L 20 40 L 25 50 L 20 60 Z" fill="url(#shark1)" /> <circle cx="170" cy="45" r="4" fill="#000" />
+      </svg>
+     </div>
+     <div class="absolute bottom-1/4 right-0 w-full h-16 opacity-25" style="animation-delay: 2s;">
+      <svg width="100%" height="100%" viewbox="0 0 1000 100" preserveaspectratio="none" class="animate-shark" style="animation-duration: 12s;"><defs>
+        <lineargradient id="shark2" x1="0%" y1="0%" x2="0%" y2="100%">
+         <stop offset="0%" style="stop-color:#00ff88;stop-opacity:0.4" />
+         <stop offset="100%" style="stop-color:#00aa44;stop-opacity:0.2" />
+        </lineargradient>
+       </defs> <ellipse cx="100" cy="50" rx="70" ry="22" fill="url(#shark2)" /> <path d="M 170 50 Q 190 44 202 50 Q 190 56 170 50 Z" fill="url(#shark2)" /> <path d="M 30 50 L 8 38 L 15 50 L 8 62 Z" fill="url(#shark2)" /> <circle cx="185" cy="44" r="5" fill="#000" />
+      </svg>
+     </div><!-- Floating Bubbles -->
+     <div class="absolute top-1/3 left-1/4 w-3 h-3 bg-cyan-300/40 rounded-full animate-bubble" style="animation-delay: 0s;"></div>
+     <div class="absolute top-1/3 left-1/3 w-2 h-2 bg-emerald-300/30 rounded-full animate-bubble" style="animation-delay: 0.5s;"></div>
+     <div class="absolute top-2/3 right-1/4 w-4 h-4 bg-cyan-300/20 rounded-full animate-bubble" style="animation-delay: 1s;"></div>
+     <div class="absolute top-1/2 right-1/3 w-2 h-2 bg-emerald-300/25 rounded-full animate-bubble" style="animation-delay: 1.5s;"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+     <div class="text-center">
+      <div class="animate-slide-up"><span class="mono text-cyan-400 text-sm tracking-widest uppercase mb-4 block">🦈 Digital Marketing Predators</span>
+      </div>
+      <h1 id="hero-title" class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 animate-slide-up-delay-1 leading-tight">We Don't Just <span class="text-gradient animate-neon">Market</span>,<br>
+       We <span class="text-gradient animate-neon">Dominate</span></h1>
+      <p id="hero-subtitle" class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10 animate-slide-up-delay-2">Unleash the power of data-driven marketing strategies that turn clicks into customers and browsers into buyers.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delay-3"><button id="cta-button" class="cta-button animate-pulse-glow px-10 py-4 rounded-full text-gray-900 font-bold text-lg"> 🚀 Start Growing Now </button> <button class="glass px-10 py-4 rounded-full font-semibold hover:bg-white/10 transition-colors"> Watch Our Results ��� </button>
+      </div>
+     </div><!-- Stats Bar -->
+     <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
+       <div id="stat-1-number" class="text-5xl font-black text-gradient mb-2">
+        500+
+       </div>
+       <div id="stat-1-label" class="text-gray-400 uppercase tracking-wider text-sm">
+        Clients Served
+       </div>
+      </div>
+      <div class="glass rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
+       <div id="stat-2-number" class="text-5xl font-black text-gradient mb-2">
+        10M+
+       </div>
+       <div id="stat-2-label" class="text-gray-400 uppercase tracking-wider text-sm">
+        Leads Generated
+       </div>
+      </div>
+      <div class="glass rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300">
+       <div id="stat-3-number" class="text-5xl font-black text-gradient mb-2">
+        98%
+       </div>
+       <div id="stat-3-label" class="text-gray-400 uppercase tracking-wider text-sm">
+        Client Retention
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Services Section -->
+   <section id="services" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="text-center mb-16"><span class="mono text-cyan-400 text-sm tracking-widest uppercase mb-4 block">Our Arsenal</span>
+      <h2 class="text-4xl md:text-6xl font-black">Marketing <span class="text-gradient">Superpowers</span></h2>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Service Card 1 -->
+      <div class="service-card glass rounded-3xl p-8 transition-all duration-500 cursor-pointer group animate-scale-pop" style="animation-delay: 0s;">
+       <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform animate-morph" style="animation-duration: 3s;">
+        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+       </div>
+       <h3 class="text-2xl font-bold mb-4 animate-slide-left">SEO Domination</h3>
+       <p class="text-gray-400">Climb to the top of Google and stay there. Our SEO strategies are designed to make your competitors sweat.</p>
+       <div class="mt-6 text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform">
+        Learn More →
+       </div>
+      </div><!-- Service Card 2 -->
+      <div class="service-card glass rounded-3xl p-8 transition-all duration-500 cursor-pointer group animate-scale-pop" style="animation-delay: 0.1s;">
+       <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform animate-morph" style="animation-duration: 4s; animation-delay: 1s;">
+        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewbox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z" />
+        </svg>
+       </div>
+       <h3 class="text-2xl font-bold mb-4 animate-slide-right">Social Media Takeover</h3>
+       <p class="text-gray-400">Turn followers into fanatics. We create viral content that spreads like wildfire across every platform.</p>
+       <div class="mt-6 text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform">
+        Learn More →
+       </div>
+      </div><!-- Service Card 3 -->
+      <div class="service-card glass rounded-3xl p-8 transition-all duration-500 cursor-pointer group animate-scale-pop" style="animation-delay: 0.2s;">
+       <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform animate-morph" style="animation-duration: 3.5s; animation-delay: 0.5s;">
+        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewbox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+        </svg>
+       </div>
+       <h3 class="text-2xl font-bold mb-4 animate-slide-left">PPC Precision</h3>
+       <p class="text-gray-400">Every dollar works harder. Our paid campaigns deliver ROI that'll make your CFO dance.</p>
+       <div class="mt-6 text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform">
+        Learn More →
+       </div>
+      </div><!-- Service Card 4 -->
+      <div class="service-card glass rounded-3xl p-8 transition-all duration-500 cursor-pointer group animate-scale-pop" style="animation-delay: 0.3s;">
+       <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform animate-morph" style="animation-duration: 4.5s; animation-delay: 1.5s;">
+        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </svg>
+       </div>
+       <h3 class="text-2xl font-bold mb-4 animate-slide-right">Email Automation</h3>
+       <p class="text-gray-400">Nurture leads while you sleep. Our email sequences convert prospects into paying customers 24/7.</p>
+       <div class="mt-6 text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform">
+        Learn More →
+       </div>
+      </div><!-- Service Card 5 -->
+      <div class="service-card glass rounded-3xl p-8 transition-all duration-500 cursor-pointer group animate-scale-pop" style="animation-delay: 0.4s;">
+       <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform animate-morph" style="animation-duration: 3.8s; animation-delay: 0.8s;">
+        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewbox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+        </svg>
+       </div>
+       <h3 class="text-2xl font-bold mb-4 animate-slide-left">Content Marketing</h3>
+       <p class="text-gray-400">Stories that sell. We craft compelling content that builds trust and drives action.</p>
+       <div class="mt-6 text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform">
+        Learn More →
+       </div>
+      </div><!-- Service Card 6 -->
+      <div class="service-card glass rounded-3xl p-8 transition-all duration-500 cursor-pointer group animate-scale-pop" style="animation-delay: 0.5s;">
+       <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform animate-morph" style="animation-duration: 4.2s; animation-delay: 1.2s;">
+        <svg class="w-8 h-8 text-gray-900" fill="currentColor" viewbox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
+        </svg>
+       </div>
+       <h3 class="text-2xl font-bold mb-4 animate-slide-right">Analytics &amp; Insights</h3>
+       <p class="text-gray-400">Data that drives decisions. We turn numbers into actionable strategies for explosive growth.</p>
+       <div class="mt-6 text-cyan-400 font-semibold group-hover:translate-x-2 transition-transform">
+        Learn More →
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Results Section -->
+   <section id="results" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-emerald-500/5"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+     <div class="text-center mb-16"><span class="mono text-cyan-400 text-sm tracking-widest uppercase mb-4 block">Proof in Numbers</span>
+      <h2 class="text-4xl md:text-6xl font-black">Results That <span class="text-gradient">Roar</span></h2>
+     </div>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8">
+       <div class="glass rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+        <div class="flex items-center gap-4 mb-4">
+         <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full flex items-center justify-center text-2xl">
+          🚀
+         </div>
+         <div>
+          <div class="text-3xl font-black text-gradient">
+           340%
+          </div>
+          <div class="text-gray-400 text-sm">
+           Average ROI Increase
+          </div>
+         </div>
         </div>
-    </section>
-
-    <!-- ========== SERVICES SECTION ========== -->
-    <section class="services" id="services">
-        <div class="section-title">
-            <h2>Our Services</h2>
-            <p>Comprehensive solutions tailored to meet your business needs</p>
+        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+         <div class="h-full bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full" style="width: 85%"></div>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">💼</div>
-                <h3>Business Consulting</h3>
-                <p>Strategic guidance to optimize operations, increase efficiency, and drive sustainable growth for your organization.</p>
-                <a href="#" class="learn-more">Learn More →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>Brand Design</h3>
-                <p>Create compelling brand identities that resonate with your audience and differentiate you from competitors.</p>
-                <a href="#" class="learn-more">Learn More →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💻</div>
-                <h3>Web Development</h3>
-                <p>Build modern, responsive websites and applications that engage users and drive conversions.</p>
-                <a href="#" class="learn-more">Learn More →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3>Digital Marketing</h3>
-                <p>Amplify your online presence with targeted strategies that reach your ideal customers effectively.</p>
-                <a href="#" class="learn-more">Learn More →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>IT Support</h3>
-                <p>Reliable technical support and maintenance to keep your systems running smoothly 24/7.</p>
-                <a href="#" class="learn-more">Learn More →</a>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📱</div>
-                <h3>Mobile Solutions</h3>
-                <p>Innovative mobile app development for iOS and Android to expand your business reach.</p>
-                <a href="#" class="learn-more">Learn More →</a>
-            </div>
+       </div>
+       <div class="glass rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+        <div class="flex items-center gap-4 mb-4">
+         <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-2xl">
+          📈
+         </div>
+         <div>
+          <div class="text-3xl font-black text-gradient">
+           500%
+          </div>
+          <div class="text-gray-400 text-sm">
+           Traffic Growth
+          </div>
+         </div>
         </div>
-    </section>
-
-    <!-- ========== ABOUT SECTION ========== -->
-    <section class="about" id="about">
-        <div class="about-content">
-            <div class="about-text">
-                <h2>Why Choose DigiSharkz?</h2>
-                <p>With over 10 years of industry experience, we've helped hundreds of companies achieve their goals through innovative solutions and dedicated support.</p>
-                <p>Our team of expert professionals is committed to delivering exceptional results that exceed expectations and drive measurable business impact.</p>
-                
-                <div class="about-features">
-                    <div class="feature">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-text">
-                            <h4>Expert Team</h4>
-                            <p>Certified professionals with extensive industry experience</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-text">
-                            <h4>DigiSharkz Results</h4>
-                            <p>Consistent track record of client success and satisfaction</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-text">
-                            <h4>24/7 Support</h4>
-                            <p>Always available when you need us most</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-text">
-                            <h4>Custom Solutions</h4>
-                            <p>Tailored approaches for your unique challenges</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-image">
-                <span>✨ Professional Excellence</span>
-            </div>
+        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+         <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style="width: 92%"></div>
         </div>
-    </section>
-
-    <!-- ========== CONTACT SECTION ========== -->
-    <section class="contact" id="contact">
-        <div class="section-title">
-            <h2>Get In Touch</h2>
-            <p>Reach out to us today and let's discuss how we can help your business grow</p>
+       </div>
+       <div class="glass rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+        <div class="flex items-center gap-4 mb-4">
+         <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center text-2xl">
+          💰
+         </div>
+         <div>
+          <div class="text-3xl font-black text-gradient">
+           $50M+
+          </div>
+          <div class="text-gray-400 text-sm">
+           Revenue Generated
+          </div>
+         </div>
         </div>
-        
-        <div class="contact-content">
-            <form class="contact-form" id="contactForm">
-                <h3 style="margin-bottom: var(--spacing-lg); font-size: 20px;">Send us a Message</h3>
-                
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="service">Service Interest</label>
-                    <input type="text" id="service" name="service" placeholder="e.g., Web Development" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Send Message</button>
-                <div class="form-message" id="formMessage"></div>
-            </form>
-
-            <div class="contact-info">
-                <a href="tel:+919876543210" class="contact-method" title="Click to call">
-                    <div class="contact-method-icon">📞</div>
-                    <div class="contact-method-text">
-                        <h3>Phone</h3>
-                        <p><a href="tel:+919123524037">+91 9123524037</a></p>
-                    </div>
-                </a>
-
-                <a href="mailto:digisharkz@gmail.com" class="contact-method" title="Click to email">
-                    <div class="contact-method-icon">✉️</div>
-                    <div class="contact-method-text">
-                        <h3>Email</h3>
-                        <p><a href="mailto:infodigisharkz@gmail.com">infodigisharkz@gmail.com</a></p>
-                    </div>
-                </a>
-
-                <a href="https://wa.me/9123524037?text=Hi%20PDigisharkz%2C%20I%20would%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener noreferrer" class="contact-method" title="Open WhatsApp">
-                    <div class="contact-method-icon">💬</div>
-                    <div class="contact-method-text">
-                        <h3>WhatsApp</h3>
-                        <p><a href="https://wa.me/9123524037?text=Hi%20DigiSharkz%2C%20I%20would%20like%20to%20discuss%20a%20project" target="_blank">Chat with us</a></p>
-                    </div>
-                </a>
-
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d657.5935704503247!2d77.57933053198082!3d9.050720477198078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1768238059004!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
+        <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+         <div class="h-full bg-gradient-to-r from-orange-500 to-red-500 rounded-full" style="width: 78%"></div>
         </div>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
-    <footer>
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="https://facebook.com" target="_blank" title="Facebook">f</a>
-                <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
-                <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
-                <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
-            </div>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-            <p>&copy; 2026 DigiSharkz. All rights reserved. | Professional Business Solutions</p>
+       </div>
+      </div>
+      <div class="glass rounded-3xl p-8 lg:p-12">
+       <div class="text-6xl mb-6">
+        ❝
+       </div>
+       <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">"Digi Sharkz transformed our online presence completely. In just 6 months, we went from invisible to industry leaders. Their team doesn't just deliver results—they exceed expectations."</p>
+       <div class="flex items-center gap-4">
+        <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full flex items-center justify-center text-2xl font-bold">
+         JM
         </div>
-    </footer>
+        <div>
+         <div class="font-bold text-lg">
+          James Mitchell
+         </div>
+         <div class="text-gray-400">
+          CEO, TechVentures Inc.
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- CTA Section -->
+   <section id="contact" class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-emerald-500/20"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+     <div class="animate-shark inline-block mb-8" style="animation-duration: 6s;">
+      <svg width="120" height="80" viewbox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg"><defs>
+        <lineargradient id="ctaShark" x1="0%" y1="0%" x2="0%" y2="100%">
+         <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+         <stop offset="100%" style="stop-color:#0088bb;stop-opacity:1" />
+        </lineargradient>
+        <filter id="ctaSharkGlow">
+         <fegaussianblur stddeviation="3" result="coloredBlur" />
+         <femerge>
+          <femergenode in="coloredBlur" />
+          <femergenode in="SourceGraphic" />
+         </femerge>
+        </filter>
+       </defs> <ellipse cx="50" cy="30" rx="38" ry="20" fill="url(#ctaShark)" filter="url(#ctaSharkGlow)" /> <path d="M 85 30 Q 98 24 105 30 Q 98 36 85 30 Z" fill="url(#ctaShark)" filter="url(#ctaSharkGlow)" /> <path d="M 50 12 L 47 0 L 53 12 Z" fill="#00ff88" filter="url(#ctaSharkGlow)" /> <g style="transform-origin: 12px 30px;">
+        <path d="M 12 30 L 0 18 L 4 30 L 0 42 Z" fill="#00d4ff" filter="url(#ctaSharkGlow)" />
+       </g> <circle cx="88" cy="25" r="4" fill="#000" /> <circle cx="90" cy="23" r="2" fill="#fff" /> <line x1="62" y1="36" x2="62" y2="48" stroke="#0088bb" stroke-width="1.5" opacity="0.7" /> <line x1="50" y1="37" x2="50" y2="50" stroke="#0088bb" stroke-width="1.5" opacity="0.7" /> <line x1="38" y1="37" x2="38" y2="50" stroke="#0088bb" stroke-width="1.5" opacity="0.7" />
+      </svg>
+     </div>
+     <h2 class="text-4xl md:text-6xl font-black mb-6 animate-neon">Ready to <span class="text-gradient">Dominate</span>?</h2>
+     <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto animate-slide-up">Stop swimming with the small fish. Let's talk about how we can make your business the apex predator of your industry.</p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center"><button id="open-contact-modal" class="cta-button animate-pulse-glow px-12 py-5 rounded-full text-gray-900 font-bold text-xl"> 🦈 Let's Hunt Together </button>
+     </div>
+     <p class="mt-6 text-gray-500 text-sm">Free strategy call • No obligations • Results guaranteed</p>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8"><!-- Brand -->
+      <div>
+       <div class="flex items-center gap-3 mb-4">
+        <svg width="32" height="32" viewbox="0 0 48 48" fill="none"><path d="M8 24C8 24 12 16 24 16C36 16 44 24 44 24C44 24 40 32 24 32C12 32 8 24 8 24Z" fill="#00d4ff" /> <path d="M24 12L28 20H20L24 12Z" fill="#00ff88" /> <circle cx="32" cy="24" r="3" fill="#0a0a1a" /> <path d="M4 24L12 20V28L4 24Z" fill="#00d4ff" />
+        </svg><span class="text-xl font-bold">DIGI<span class="text-gradient">SHARKZ</span></span>
+       </div>
+       <p class="text-gray-400 text-sm">Dominating digital marketing since day one.</p>
+      </div><!-- Quick Links -->
+      <div>
+       <h4 class="font-bold mb-4 text-white">Quick Links</h4>
+       <div class="space-y-2"><a href="#services" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm block">Services</a> <a href="#results" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm block">Results</a> <a href="#contact" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm block">Contact</a>
+       </div>
+      </div><!-- Contact Info -->
+      <div>
+       <h4 class="font-bold mb-4 text-white">Contact</h4>
+       <div class="space-y-2"><a id="footer-phone" href="tel:+1234567890" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm block">📞 +1 (555) 123-4567</a> <a id="footer-email" href="mailto:hello@digisharkz.com" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm block">📧 hello@digisharkz.com</a> <a id="footer-whatsapp" href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm block">💬 WhatsApp</a>
+       </div>
+      </div><!-- Social Media -->
+      <div>
+       <h4 class="font-bold mb-4 text-white">Follow Us</h4>
+       <div class="flex gap-4"><a id="footer-twitter" href="https://twitter.com/digisharkz" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+         <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7a10.6 10.6 0 01-9.5 5M2 20s1 2 6 2" />
+         </svg></a> <a id="footer-facebook" href="https://facebook.com/digisharkz" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+         <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M18 2h-3a6 6 0 00-6 6v3H7v4h2v8h4v-8h3l1-4h-4V8a1 1 0 011-1h3z" />
+         </svg></a> <a id="footer-instagram" href="https://instagram.com/digisharkz" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+         <svg class="w-5 h-5 text-pink-400" fill="currentColor" viewbox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2" /><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" /><circle cx="17" cy="7" r="1" fill="currentColor" />
+         </svg></a> <a id="footer-linkedin" href="https://linkedin.com/company/digisharkz" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all hover:scale-110">
+         <svg class="w-5 h-5 text-blue-500" fill="currentColor" viewbox="0 0 24 24">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" />
+         </svg></a>
+       </div>
+      </div>
+     </div><!-- Bottom Bar -->
+     <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-gray-500 text-sm">
+       © 2024 Digi Sharkz. All rights reserved.
+      </div>
+      <div class="flex gap-6 text-gray-400 text-sm"><a href="#" class="hover:text-cyan-400 transition-colors">Privacy</a> <a href="#" class="hover:text-cyan-400 transition-colors">Terms</a> <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div><!-- Contact Modal -->
+  <div id="contact-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4 overflow-auto">
+   <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 max-w-lg w-full my-8 glass border border-white/10">
+    <div class="flex items-center justify-between mb-6">
+     <h2 class="text-3xl font-black text-gradient">Get In Touch</h2><button id="close-modal-btn" class="text-gray-400 hover:text-white transition-colors text-2xl">✕</button>
+    </div>
+    <form id="contact-form" class="space-y-4"><!-- Name Field -->
+     <div><label for="contact-name" class="block text-sm font-semibold mb-2 text-gray-200">Full Name</label> <input type="text" id="contact-name" name="name" placeholder="John Doe" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 transition-all">
+     </div><!-- Email Field -->
+     <div><label for="contact-email" class="block text-sm font-semibold mb-2 text-gray-200">Email</label> <input type="email" id="contact-email" name="email" placeholder="john@example.com" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 transition-all">
+     </div><!-- Phone Field -->
+     <div><label for="contact-phone" class="block text-sm font-semibold mb-2 text-gray-200">Phone (Optional)</label> <input type="tel" id="contact-phone" name="phone" placeholder="+1 (555) 123-4567" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 transition-all">
+     </div><!-- Message Field -->
+     <div><label for="contact-message" class="block text-sm font-semibold mb-2 text-gray-200">Message</label> <textarea id="contact-message" name="message" placeholder="Tell us about your project..." rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/50 focus:bg-white/10 transition-all resize-none"></textarea>
+     </div><!-- Submit Button --> <button type="submit" id="submit-btn" class="w-full cta-button py-3 rounded-xl font-bold text-gray-900 transition-all hover:scale-105 mt-6"> Send Message 🚀 </button>
+    </form><!-- Success Message -->
+    <div id="success-message" class="hidden mt-4 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
+     <p class="text-emerald-400 font-semibold">✓ Message received! We'll get back to you soon.</p>
+    </div><!-- Error Message -->
+    <div id="error-message" class="hidden mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-xl">
+     <p id="error-text" class="text-red-400 font-semibold"></p>
+    </div><!-- Loading State -->
+    <div id="loading-state" class="hidden mt-4 p-4">
+     <div class="flex items-center gap-2">
+      <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+      <p class="text-gray-300 font-semibold">Sending your message...</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script>
+    const defaultConfig = {
+      hero_title: 'We Don\'t Just <span class="text-gradient">Market</span>,<br/>We <span class="text-gradient">Dominate</span>',
+      hero_subtitle: 'Unleash the power of data-driven marketing strategies that turn clicks into customers and browsers into buyers.',
+      cta_button_text: '🚀 Start Growing Now',
+      stat_1_number: '500+',
+      stat_1_label: 'Clients Served',
+      stat_2_number: '10M+',
+      stat_2_label: 'Leads Generated',
+      stat_3_number: '98%',
+      stat_3_label: 'Client Retention',
+      phone_number: '+1 (555) 123-4567',
+      email_address: 'hello@digisharkz.com',
+      whatsapp_number: '+1 (555) 123-4567',
+      twitter_url: 'https://twitter.com/digisharkz',
+      facebook_url: 'https://facebook.com/digisharkz',
+      instagram_url: 'https://instagram.com/digisharkz',
+      linkedin_url: 'https://linkedin.com/company/digisharkz',
+      primary_color: '#00d4ff',
+      secondary_color: '#00ff88',
+      background_color: '#0a0a1a',
+      text_color: '#ffffff',
+      accent_color: '#1a1a3a',
+      font_family: 'Outfit',
+      font_size: 16
+    };
 
-    <script>
-        // Mobile menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
+    let config = { ...defaultConfig };
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+    // Initialize Data SDK
+    const dataHandler = {
+      onDataChanged(data) {
+        // Write-only form, no need to display data
+      }
+    };
+
+    // Initialize SDK on load
+    window.dataSdk.init(dataHandler);
+
+    // Contact Form Functions
+    const contactModal = document.getElementById('contact-modal');
+    const contactForm = document.getElementById('contact-form');
+    const openContactBtn = document.getElementById('open-contact-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    const loadingState = document.getElementById('loading-state');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Open modal
+    openContactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      contactModal.classList.remove('hidden');
+      contactForm.reset();
+      successMessage.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+      loadingState.classList.add('hidden');
+    });
+
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
+      contactModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside
+    contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) {
+        contactModal.classList.add('hidden');
+      }
+    });
+
+    // Form submission
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+
+      // Reset messages
+      successMessage.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+      loadingState.classList.add('hidden');
+
+      // Validation
+      if (!name || !email || !message) {
+        document.getElementById('error-text').textContent = 'Please fill in all required fields.';
+        errorMessage.classList.remove('hidden');
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('error-text').textContent = 'Please enter a valid email address.';
+        errorMessage.classList.remove('hidden');
+        return;
+      }
+
+      // Show loading state
+      loadingState.classList.remove('hidden');
+      submitBtn.disabled = true;
+
+      try {
+        const result = await window.dataSdk.create({
+          name: name,
+          email: email,
+          phone: phone,
+          message: message,
+          created_at: new Date().toISOString()
         });
 
-        // Close menu when a link is clicked
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-
-            // Basic validation
-            if (!data.name || !data.email || !data.phone || !data.message) {
-                showMessage('Please fill in all fields', 'error');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email)) {
-                showMessage('Please enter a valid email address', 'error');
-                return;
-            }
-
-            // Phone validation
-            const phoneRegex = /^[0-9]{10,}$/;
-            if (!phoneRegex.test(data.phone.replace(/[\s\-()]/g, ''))) {
-                showMessage('Please enter a valid phone number', 'error');
-                return;
-            }
-
-            // Success message
-            showMessage('✓ Thank you! We\'ll contact you soon.', 'success');
-            
-            // Reset form
-            contactForm.reset();
-
-            // Log data (in production, send to backend)
-            console.log('Form submitted:', data);
-
-            // Optional: Send to email using a service like EmailJS
-            // sendEmail(data);
-        });
-
-        function showMessage(message, type) {
-            formMessage.textContent = message;
-            formMessage.className = `form-message ${type}`;
-            
-            if (type === 'success') {
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            }
+        if (result.isOk) {
+          // Show success message
+          loadingState.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+          contactForm.reset();
+          
+          // Hide modal after 2 seconds
+          setTimeout(() => {
+            contactModal.classList.add('hidden');
+          }, 2000);
+        } else {
+          throw new Error('Failed to submit message');
         }
+      } catch (error) {
+        loadingState.classList.add('hidden');
+        document.getElementById('error-text').textContent = 'Failed to send message. Please try again.';
+        errorMessage.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
 
-        // Smooth scroll behavior enhancement
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
-                
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+    // Handle social menu toggle
+    document.getElementById('social-toggle-btn').addEventListener('click', function() {
+      const container = document.getElementById('social-icons-container');
+      const icon = document.getElementById('social-icon');
+      container.classList.toggle('hidden');
+      icon.style.transform = container.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+    });
 
-        // Add scroll effect to navbar
-        let lastScrollTop = 0;
-        const header = document.querySelector('header');
+    // Close social menu when clicking elsewhere
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('contact-menu');
+      if (!menu.contains(e.target)) {
+        document.getElementById('social-icons-container').classList.add('hidden');
+        document.getElementById('social-icon').style.transform = 'rotate(0deg)';
+      }
+    });
 
-        window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > 100) {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
-            }
-            
-            lastScrollTop = scrollTop;
-        });
+    async function onConfigChange(cfg) {
+      config = { ...defaultConfig, ...cfg };
 
-        // Page load animation
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.service-card').forEach((card, index) => {
-                card.style.animation = `slideUp 0.6s ease-out ${index * 0.1}s backwards`;
-            });
-        });
-    </script>
-</body>
+      // Update hero section
+      document.getElementById('hero-title').innerHTML = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('cta-button').textContent = config.cta_button_text || defaultConfig.cta_button_text;
+
+      // Update stats
+      document.getElementById('stat-1-number').textContent = config.stat_1_number || defaultConfig.stat_1_number;
+      document.getElementById('stat-1-label').textContent = config.stat_1_label || defaultConfig.stat_1_label;
+      document.getElementById('stat-2-number').textContent = config.stat_2_number || defaultConfig.stat_2_number;
+      document.getElementById('stat-2-label').textContent = config.stat_2_label || defaultConfig.stat_2_label;
+      document.getElementById('stat-3-number').textContent = config.stat_3_number || defaultConfig.stat_3_number;
+      document.getElementById('stat-3-label').textContent = config.stat_3_label || defaultConfig.stat_3_label;
+
+      // Update contact information
+      const phoneNumber = config.phone_number || defaultConfig.phone_number;
+      const emailAddress = config.email_address || defaultConfig.email_address;
+      const whatsappNumber = config.whatsapp_number || defaultConfig.whatsapp_number;
+      
+      // Convert phone number to tel: format
+      const phoneFormatted = phoneNumber.replace(/\D/g, '');
+      const whatsappFormatted = whatsappNumber.replace(/\D/g, '');
+
+      document.getElementById('email-btn').href = `mailto:${emailAddress}`;
+      document.getElementById('call-btn').href = `tel:+${phoneFormatted}`;
+      document.getElementById('whatsapp-btn').href = `https://wa.me/${whatsappFormatted}`;
+
+      // Update footer contact info
+      document.getElementById('footer-email').href = `mailto:${emailAddress}`;
+      document.getElementById('footer-email').textContent = `📧 ${emailAddress}`;
+      document.getElementById('footer-phone').href = `tel:+${phoneFormatted}`;
+      document.getElementById('footer-phone').textContent = `📞 ${phoneNumber}`;
+      document.getElementById('footer-whatsapp').href = `https://wa.me/${whatsappFormatted}`;
+
+      // Update social media links
+      const twitterUrl = config.twitter_url || defaultConfig.twitter_url;
+      const facebookUrl = config.facebook_url || defaultConfig.facebook_url;
+      const instagramUrl = config.instagram_url || defaultConfig.instagram_url;
+      const linkedinUrl = config.linkedin_url || defaultConfig.linkedin_url;
+
+      document.getElementById('twitter-btn').href = twitterUrl;
+      document.getElementById('facebook-btn').href = facebookUrl;
+      document.getElementById('instagram-btn').href = instagramUrl;
+      document.getElementById('linkedin-btn').href = linkedinUrl;
+
+      document.getElementById('footer-twitter').href = twitterUrl;
+      document.getElementById('footer-facebook').href = facebookUrl;
+      document.getElementById('footer-instagram').href = instagramUrl;
+      document.getElementById('footer-linkedin').href = linkedinUrl;
+
+      // Update colors
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+
+      document.documentElement.style.setProperty('--primary-color', primaryColor);
+      document.body.style.color = textColor;
+
+      // Update font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'sans-serif';
+      document.body.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
+
+      // Update font size
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${baseSize}px`;
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => { cfg.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => { cfg.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => { cfg.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => cfg.primary_color || defaultConfig.primary_color,
+            set: (value) => { cfg.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+          },
+          {
+            get: () => cfg.secondary_color || defaultConfig.secondary_color,
+            set: (value) => { cfg.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => { cfg.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => { cfg.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['hero_title', cfg.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', cfg.hero_subtitle || defaultConfig.hero_subtitle],
+        ['cta_button_text', cfg.cta_button_text || defaultConfig.cta_button_text],
+        ['stat_1_number', cfg.stat_1_number || defaultConfig.stat_1_number],
+        ['stat_1_label', cfg.stat_1_label || defaultConfig.stat_1_label],
+        ['stat_2_number', cfg.stat_2_number || defaultConfig.stat_2_number],
+        ['stat_2_label', cfg.stat_2_label || defaultConfig.stat_2_label],
+        ['stat_3_number', cfg.stat_3_number || defaultConfig.stat_3_number],
+        ['stat_3_label', cfg.stat_3_label || defaultConfig.stat_3_label],
+        ['phone_number', cfg.phone_number || defaultConfig.phone_number],
+        ['email_address', cfg.email_address || defaultConfig.email_address],
+        ['whatsapp_number', cfg.whatsapp_number || defaultConfig.whatsapp_number],
+        ['twitter_url', cfg.twitter_url || defaultConfig.twitter_url],
+        ['facebook_url', cfg.facebook_url || defaultConfig.facebook_url],
+        ['instagram_url', cfg.instagram_url || defaultConfig.instagram_url],
+        ['linkedin_url', cfg.linkedin_url || defaultConfig.linkedin_url]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Button functionality
+    document.getElementById('cta-button').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('contact-modal').classList.remove('hidden');
+      contactForm.reset();
+      successMessage.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+      loadingState.classList.add('hidden');
+    });
+
+    document.getElementById('watch-results-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c10631801d03af7',t:'MTc2ODkzMTE0My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
